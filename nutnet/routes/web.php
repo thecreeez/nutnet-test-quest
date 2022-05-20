@@ -14,5 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('albums');
+});
+
+Route::get('/albums/{page}', function ($page) {
+    return 'PAGE: '.$page;
+    return view('albums');
+});
+
+Route::get('/edit', function () {
+   return view('edit');
+});
+
+Route::get('/auth', function () {
+    return view('auth');
 });
