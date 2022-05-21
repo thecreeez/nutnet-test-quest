@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('albums');
-});
+Route::get('/', [AlbumController::class, 'firstPage'])->name('index');
 
 Route::get('/albums/{page}', function ($page) {
     return 'PAGE: '.$page;
@@ -24,8 +23,10 @@ Route::get('/albums/{page}', function ($page) {
 
 Route::get('/edit', function () {
    return view('edit');
-});
+})->name('edit');
 
 Route::get('/auth', function () {
     return view('auth');
-});
+})->name('auth');
+
+Route::post('/api/album/add', [AlbumController::class, 'add'])->name('album-add');
