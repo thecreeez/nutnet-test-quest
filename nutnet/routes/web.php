@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AlbumController::class, 'firstPage'])->name('index');
 
-Route::get('/albums/{page}', function ($page) {
-    return 'PAGE: '.$page;
-    return view('albums');
-});
+Route::get('/albums/{page}', [AlbumController::class, 'viewPage']);
 
 Route::get('/edit', function () {
    return view('edit');
