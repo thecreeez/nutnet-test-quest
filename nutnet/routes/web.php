@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,5 @@ Route::get('/auth', function () {
 
 Route::post('/api/auth', [AuthController::class, 'auth'])->name('api-auth');
 Route::get('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
+
+Route::get('/logs', [LogController::class, 'logs'])->middleware('auth')->name('logs');

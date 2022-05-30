@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/add">Добавить</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/logs">Логи</a>
+                    </li>
                 </ul>
                 <form class="d-flex">
                     @if(Auth::user())

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AlbumController extends Controller {
 
@@ -32,6 +34,8 @@ class AlbumController extends Controller {
 
         $album->save();
 
+        LogController::log($album, 'CREATING');
+
         return redirect(route('index'))->withErrors(['success' => 'Альбом успешно добавлен!']);
     }
 
@@ -49,10 +53,12 @@ class AlbumController extends Controller {
             $album->cover_url = $req->cover_url;
 
             $album->save();
+            LogController::log($album, 'CHANGING');
 
             return redirect(route('index'))->withErrors(['success' => 'Альбом успешно изменен!']);
         }
         else if ($req->type == 'Удалить') {
+            LogController::log($album, 'DELETING');
             $album->delete();
 
             return redirect(route('index'))->withErrors(['success' => 'Альбом успешно удален!']);
