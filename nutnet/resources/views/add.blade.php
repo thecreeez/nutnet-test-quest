@@ -1,36 +1,33 @@
 @extends('parts.app')
 
-@section('title'){{ $title }}@endsection
+@section('title')Добавление@endsection
 
 @section('content')
     <div class="row">
         <div class="col">
             <h4>Форма</h4>
-            <form action="{{ route('album-edit') }}" method="post">
+            <form action="{{ route('album-add') }}" method="post">
                 @csrf
 
                 <div class="mb-3">
                     <label for="inputAuthor" class="form-label">Автор</label>
-                    <input type="text" class="form-control" id="inputAuthor" name="author" @if($type == 'editing') value="{{ $album->author }}" @endif>
+                    <input type="text" class="form-control" id="inputAuthor" name="author">
                 </div>
                 <div class="mb-3">
                     <label for="inputName" class="form-label">Альбом</label>
-                    <input type="text" class="form-control" id="inputName" name="name" @if($type == 'editing') value="{{ $album->name }}" @endif>
+                    <input type="text" class="form-control" id="inputName" name="name">
                 </div>
                 <div class="mb-3">
                     <label for="inputDescription" class="form-label">Описание</label>
-                    <textarea class="form-control" id="inputDescription" rows="3" name="description">@if($type == 'editing'){{ $album->description }}@endif</textarea>
+                    <textarea class="form-control" id="inputDescription" rows="3" name="description"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="inputPic" class="form-label">URL обложки</label>
-                    <input type="text" class="form-control" id="inputPic" name="cover_url" @if($type == 'editing')value="{{ $album->cover_url }}" @endif>
+                    <input type="text" class="form-control" id="inputPic" name="cover_url">
                 </div>
 
-                <input type="hidden" name="id" value="{{ $album->id }}">
-
-                <input type="submit" class="btn btn-primary" name="type" value="Изменить">
-                <input type="submit" class="btn btn-danger" name="type" value="Удалить">
+                <button type="submit" class="btn btn-primary" name="edit">Добавить</button>
             </form>
         </div>
         <div class="col">
@@ -40,13 +37,13 @@
                 <div class="card mb-3 row shadow-sm" style="max-width: 540px;">
                     <div class="row g-0" style="max-height: 200px">
                         <div class="col-md-4" style="max-height: 200px">
-                            <img id="lookoutPic" src=@if($type == 'editing')"{{ $album->cover_url }}"@else"https://images.genius.com/1ed8617297a59bb387aa035bd43f5a36.1000x1000x1.jpg"@endif class="img-fluid rounded-start h-100" alt="Тут будет обложка">
+                            <img id="lookoutPic" src="https://images.genius.com/1ed8617297a59bb387aa035bd43f5a36.1000x1000x1.jpg" class="img-fluid rounded-start h-100" alt="Тут будет обложка">
                         </div>
                         <div class="col-md-8" style="max-height: 200px">
                             <div class="card-body">
-                                <h5 class="card-title" id="lookoutName">@if($type == 'editing'){{ $album->name }}@elseТут будет ваше прекрасное название@endif</h5>
-                                <h6 class="card-text" id="lookoutAuthor">@if($type == 'editing'){{ $album->author }}@elseА тут ваш замечательный автор@endif</h6>
-                                <p class="card-text" id="lookoutDescription" style="max-height: 100px; text-overflow: ellipsis; overflow: hidden">@if($type == 'editing'){{ $album->description }}@elseА здесь? Конечно же описание пластинки!!!@endif</p>
+                                <h5 class="card-title" id="lookoutName">Тут будет ваше прекрасное название</h5>
+                                <h6 class="card-text" id="lookoutAuthor">А тут ваш замечательный автор</h6>
+                                <p class="card-text" id="lookoutDescription" style="max-height: 100px; text-overflow: ellipsis; overflow: hidden">А здесь? Конечно же описание пластинки!!!</p>
                             </div>
                         </div>
                     </div>

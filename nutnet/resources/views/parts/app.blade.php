@@ -19,11 +19,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/edit">Изменить</a>
+                        <a class="nav-link active" aria-current="page" href="/add">Добавить</a>
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <a class="btn btn-outline-success" href="/auth">Войти</a>
+                    @if(Auth::user())
+                        <a class="btn btn-outline-success" href="/api/logout">Выйти</a>
+                    @else
+                        <a class="btn btn-outline-success" href="/auth">Войти</a>
+                    @endif
                 </form>
             </div>
         </div>
@@ -31,7 +35,17 @@
 </header>
 
 <div class="container">
-    @yield('notifications')
+    @error('error')
+    <div class="alert alert-danger" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+
+    @error('success')
+    <div class="alert alert-success" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
     @yield('content')
 </div>
 

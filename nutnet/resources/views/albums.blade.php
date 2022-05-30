@@ -2,11 +2,6 @@
 
 @section('title')Альбомы@endsection
 
-@section('notifications')
-    <div class="alert alert-success" role="alert">
-        Вы успешно вошли в аккаунт как biliboba
-    </div>
-@endsection
 @section('content')
     <div class="d-flex flex-column align-items-center" >
         @foreach($data as $el)

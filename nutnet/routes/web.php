@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,12 +19,18 @@ Route::get('/', [AlbumController::class, 'firstPage'])->name('index');
 
 Route::get('/albums/{page}', [AlbumController::class, 'viewPage']);
 
-Route::get('/edit', function () {
-   return view('edit');
-})->name('edit');
+Route::get('/add', function () {
+   return view('add');
+})->name('add');
+
+Route::get('/edit/{id}', [AlbumController::class, 'editAlbum'])->middleware('auth')->name('editAlbum');
+
+Route::post('/api/album/add', [AlbumController::class, 'add'])->name('album-add');
+Route::post('/api/album/edit', [AlbumController::class, 'edit'])->name('album-edit');
 
 Route::get('/auth', function () {
     return view('auth');
 })->name('auth');
 
-Route::post('/api/album/add', [AlbumController::class, 'add'])->name('album-add');
+Route::post('/api/auth', [AuthController::class, 'auth'])->name('api-auth');
+Route::get('/api/logout', [AuthController::class, 'logout'])->name('api-logout');
